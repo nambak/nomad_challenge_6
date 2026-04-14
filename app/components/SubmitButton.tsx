@@ -2,16 +2,21 @@
 
 import { useFormStatus } from 'react-dom'
 
-export function SubmitButton() {
+type Props = {
+  label?: string
+  pendingLabel?: string
+}
+
+export function SubmitButton({ label = 'Log in', pendingLabel = 'Loading...' }: Props) {
   const { pending } = useFormStatus()
 
   return (
     <button
       type="submit"
       disabled={pending}
-      className="w-full rounded-full bg-stone-200 px-6 py-3 text-sm font-semibold text-stone-700 transition-all hover:bg-stone-300 disabled:cursor-not-allowed disabled:opacity-60"
+      className="w-full rounded-full bg-stone-800 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-stone-700 disabled:cursor-not-allowed disabled:opacity-60"
     >
-      {pending ? 'Loading...' : 'Log in'}
+      {pending ? pendingLabel : label}
     </button>
   )
 }
