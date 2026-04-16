@@ -85,5 +85,5 @@ export async function createAccount(
   session.userId = user.id
   await session.save()
 
-  redirect('/profile')
+  redirect('/')
 }

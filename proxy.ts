@@ -1,9 +1,10 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
 // Routes that require the user to be logged in.
-const PROTECTED_PREFIXES = ['/profile']
+// `/` only matches the exact root; `/profile` and `/tweets` also match subpaths.
+const PROTECTED_PREFIXES = ['/', '/profile', '/tweets']
 // Routes that only logged-out users should see.
-const PUBLIC_ONLY_PATHS = ['/', '/log-in', '/create-account']
+const PUBLIC_ONLY_PATHS = ['/log-in', '/create-account']
 
 const SESSION_COOKIE = 'nomad_auth_session'
 
@@ -35,5 +36,11 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/log-in', '/create-account', '/profile/:path*'],
+  matcher: [
+    '/',
+    '/log-in',
+    '/create-account',
+    '/profile/:path*',
+    '/tweets/:path*',
+  ],
 }

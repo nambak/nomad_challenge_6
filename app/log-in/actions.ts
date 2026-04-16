@@ -63,5 +63,5 @@ export async function logIn(
   session.userId = user.id
   await session.save()
 
-  redirect('/profile')
+  redirect('/')
 }
